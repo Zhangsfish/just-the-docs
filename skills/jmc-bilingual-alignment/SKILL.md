@@ -153,7 +153,7 @@ For each material change, state:
 
 Example:
 
-> **原文：** 晶体结构证明 A/B 两侧都可以接 linker。  
+> **原文：** 晶体结构证明 A/B 两侧都可以接 linker.  
 > **英文处理：** 不把 1ND5 作为 A/B 两侧均可连接的直接证据，只用于支持结合位点具有向溶剂暴露方向延伸的结构可能性。  
 > **变化类型：** 重新归因 + 降低证据强度。  
 > **原因：** 结构只能支持其直接显示的空间信息，不能单独证明两个连接位点具有等价的活性容忍度。
@@ -213,15 +213,34 @@ Be especially strict about:
 
 Faithfulness to actual procedures and data takes priority over narrative elegance. Never improve a method by inventing missing conditions or silently standardizing details that may be experimentally different.
 
+## Strict Local Semantic Patch / 中文局部修改规则
+
+When the user edits the **Faithful Chinese Gloss / 忠实中文释义**, treat the edited Chinese sentence as the new semantic contract for that sentence.
+
+**The user's modification to the faithful Chinese gloss has the highest semantic priority. Unless grammatical cohesion makes it strictly necessary, do not modify any English sentence other than the sentence corresponding to the user's edited Chinese.**
+
+Apply the following rules:
+
+1. **Local edit, local effect.** If the user selects and changes one Chinese sentence, update only the corresponding English sentence by default.
+2. Do not use a local correction as an excuse to rewrite the paragraph, improve unrelated wording, or change previously approved scientific claims.
+3. If the local semantic change necessarily affects an adjacent transition, pronoun reference, tense, logical connector, or other sentence, make only the minimum required adjustment.
+4. Any such collateral adjustment must be disclosed explicitly to the user as an **additional necessary change**.
+5. If the user changes several specific Chinese sentences, patch only those corresponding English sentences plus strictly necessary local transitions.
+6. Only perform a paragraph-level rewrite when the user explicitly asks to “顺一下整段”, “整体重写”, “重新组织逻辑”, or gives an equivalent instruction.
+7. After a local patch, the faithful Chinese gloss must remain synchronized with the revised English. Do not silently reinterpret the user's edited Chinese when regenerating the gloss.
+
+This rule overrides the general preference in the Review Loop to regenerate prose from the updated semantic contract at paragraph level. For sentence-level user edits, **strict local patching is the default**.
+
 ## Review Loop
 
 When the user reviews the output and corrects the scientific meaning:
 
 1. treat the user's correction as an update to the semantic contract;
-2. revise the English from that updated contract rather than patching isolated words;
-3. regenerate the faithful Chinese gloss so it matches the revised English exactly;
-4. update the scientific/logic change log;
-5. preserve previously agreed terminology and claims unless the user explicitly changes them.
+2. for sentence-level edits, follow the **Strict Local Semantic Patch** rule above;
+3. for paragraph-level revisions explicitly requested by the user, revise the English from the updated contract rather than patching isolated words;
+4. regenerate the faithful Chinese gloss so it matches the revised English exactly;
+5. update the scientific/logic change log;
+6. preserve previously agreed terminology and claims unless the user explicitly changes them.
 
 The workflow is iterative:
 
@@ -272,3 +291,4 @@ Equivalent requests such as “按之前的 JMC skill 写,” “按我们的 JM
 6. All scientific-layer edits must be visible to the user.
 7. When precision and elegance conflict, choose precision.
 8. When evidence and narrative ambition conflict, choose the evidence.
+9. When the user edits the faithful Chinese gloss, that edit has the highest semantic priority and should be applied as a strict local patch unless the user explicitly requests broader rewriting.
